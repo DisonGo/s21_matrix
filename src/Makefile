@@ -1,7 +1,7 @@
 PROJECT_NAME	=s21_matrix
 ODIR 			= obj
 LIB_INC_DIR		= include
-LIB_SRC_DIR		= Functions
+LIB_SRC_DIR		= source
 LIB_O_DIR		= $(ODIR)/$(LIB_SRC_DIR)
 ADD_SRC_DIR		= other/source
 ADD_INC_DIR		= other/include
