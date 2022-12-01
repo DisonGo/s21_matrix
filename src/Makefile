@@ -36,10 +36,10 @@ endif
 all: clear $(BUILD_DIR)/$(PROJECT_NAME).a
 
 $(LIB_O_DIR)/%.o: $(LIB_SRC_DIR)/%.c
-	$(gcc) $(ADD_LIB) -I${LIB_INC_DIR} $< -c -o $@
+	$(gcc) $(ADD_LIB) -I${LIB_INC_DIR} -I${ADD_INC_DIR} $< -c -o $@
 
 $(ADD_O_DIR)/%.o: $(ADD_SRC_DIR)/%.c
-	$(gcc) $(ADD_LIB) -I${ADD_INC_DIR} $< -c -o $@
+	$(gcc) $(ADD_LIB) -I${LIB_INC_DIR} -I${ADD_INC_DIR} $< -c -o $@
 
 tests: clean
 	$(eval gcc = 1)
@@ -70,14 +70,14 @@ clang-replace:
 
 $(BUILD_DIR)/$(PROJECT_NAME).a: obj
 	ar rcs $(BUILD_DIR)/$@ $(LIB_O_DIR)/*.o $(ADD_O_DIR)/*.o
-
+$(PROJECT_NAME).a: $(BUILD_DIR)/$(PROJECT_NAME).a
 set_debug_gcc:
 	$(eval gcc += -g)
-	@echo s21_math:Debug build
+	@echo $(PROJECT_NAME):Debug build
 
 set_report_gcc:
 	$(eval gcc += -fprofile-arcs -ftest-coverage -fPIC)
-	@echo s21_math:Check build
+	@echo $(PROJECT_NAME):Check build
 
 test: $(TEST_SRC) $(BUILD_DIR)/$(PROJECT_NAME).a
 	$(gcc) $^ -o $@ $(TEST_CHECK_F) $(ADD_LIB)
