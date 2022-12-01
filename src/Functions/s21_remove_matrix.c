@@ -1,4 +1,5 @@
 #include "s21_matrix.h"
+#include <stdlib.h>
 /**
  * @brief Free matrix.
  * 
