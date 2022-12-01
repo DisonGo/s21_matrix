@@ -1,5 +1,14 @@
 #include "s21_matrix.h"
-//TODO Implement remove_matrix
+/**
+ * @brief Free matrix.
+ * 
+ * @param A Matrix to free.
+ */
 void s21_remove_matrix(matrix_t *A) { 
-  return 1;
+  if (!A) return;
+  if (A->matrix) {
+    for(int i = 0; i < A->rows; i++)
+      if (A->matrix[i]) free(A->matrix[i]);
+    free(A->matrix);
+  }
 }
