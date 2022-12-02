@@ -3,6 +3,7 @@ create_funcs.sh
 test
 main
 .vscode
+materials
 # Prerequisites
 *.d
 
