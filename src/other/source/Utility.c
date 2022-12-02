@@ -19,3 +19,6 @@ int is_eq_ld(long double a, long double b, long double precision) {
 int is_eq_mat_size(matrix_t *a, matrix_t *b) {
     return (a->columns == b->columns && a->rows == b->rows);
 }
+int is_null_mat(matrix_t *a) {
+    return (!a || !a->matrix);
+}
