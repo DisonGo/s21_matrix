@@ -22,3 +22,8 @@ int is_eq_mat_size(matrix_t *a, matrix_t *b) {
 int is_null_mat(matrix_t *a) {
     return (!a || !a->matrix);
 }
+double determinant_2x2(matrix_t* A) {
+  double first = A->matrix[0][0] * A->matrix[1][1];
+  double second = A->matrix[0][1] * A->matrix[1][0];
+  return first - second;
+}
