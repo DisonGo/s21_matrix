@@ -1,4 +1,5 @@
 #include "s21_matrix.h"
+// TODO Add Infinity / nan checks for value.
 /**
  * @brief Summarize matrices.
  * 
