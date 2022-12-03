@@ -1,8 +1,19 @@
 #include "s21_matrix.h"
-//TODO Implement mult_matrix
+// TODO Add Infinity / nan checks for value.
+/**
+ * @brief Multiplicate matrices.
+ * 
+ * @param A First matrix.
+ * @param B Second matrix.
+ * @param result Output matrix.
+ * @return Success of function.
+ * @retval 0 - OK.
+ * @retval 1 - Memory, incorrect matrix errors.
+ * @retval 2 - Wrong size.
+ */
 int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) { 
   if (is_null_mat(A) || is_null_mat(B)) return 1;
-  if (!((A->rows == B->columns) || (A->columns == B->rows))) return 2;
+  if (!((A->rows == B->columns) && (A->columns == B->rows))) return 2;
   int rows = A->rows;
   int cols = B->columns;
   int k_max = A->columns;

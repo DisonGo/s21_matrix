@@ -13,7 +13,7 @@
  */
 int s21_create_matrix(int rows, int columns, matrix_t *result) { 
   if (!result) return 1;
-  if (rows <= 0 || columns <= 0) return 2;
+  if (rows <= 0 || columns <= 0 || (rows * columns == 1)) return 2;
   double** matrix = calloc(rows, sizeof(double*)); 
   if (!matrix) return 1;
   for (int i = 0; i < rows; i++) {
