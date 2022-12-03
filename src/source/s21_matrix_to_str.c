@@ -26,7 +26,7 @@ char *s21_matrix_to_str(matrix_t *A, int precision) {
             if (next_not_end) strncat(tmp, " ", 1);
             strncat(str, tmp, width + dot + next_not_end);
         }
-        strncat(str, "\n", 1);
+        if (y + 1 < A->rows) strncat(str, "\n", 1);
     }
     return str;
 }
