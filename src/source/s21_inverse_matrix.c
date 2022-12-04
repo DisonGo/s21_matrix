@@ -1,7 +1,7 @@
 #include "s21_matrix.h"
 /**
  * @brief Calculate inverse matrix.
- * 
+ *
  * @param A Source matrix.
  * @param result Output matrix.
  * @return Success of function.
@@ -10,7 +10,7 @@
  * @retval 2 - Wrong size.
  */
 int s21_inverse_matrix(matrix_t *A, matrix_t *result) {
-  if (is_null_mat(A) || !is_null_mat(result)) return 1;
+  if (is_incorrect_mat(A) || !is_incorrect_mat(result)) return 1;
   if (A->rows != A->columns) return 2;
   matrix_t M = {0};
   matrix_t MT = {0};

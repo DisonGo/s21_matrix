@@ -1,8 +1,7 @@
 #include "s21_matrix.h"
-// TODO Add Infinity / nan checks for value.
 /**
  * @brief Multiply matrix by number.
- * 
+ *
  * @param A Matrix.
  * @param number Multiplication number.
  * @param result Output matrix.
@@ -11,13 +10,15 @@
  * @retval 1 - Memory, incorrect matrix errors.
  */
 int s21_mult_number(matrix_t *A, double number, matrix_t *result) {
-  if (is_null_mat(A)) return 1;
+  if (is_incorrect_mat(A)) return 1;
   int rows = A->rows, cols = A->columns;
+  int error = 0;
   if (s21_create_matrix(rows, cols, result)) return 1;
   for (int row = 0; row < rows; row++)
     for (int col = 0; col < cols; col++) {
       long double mult = A->matrix[row][col] * number;
-      result->matrix[row][col] = mult;
+      if (isinf(fabs(mult)) || isnan(fabs(mult))) error = 2;
+      if (!error) result->matrix[row][col] = mult;
     }
-  return 0;
+  return error;
 }

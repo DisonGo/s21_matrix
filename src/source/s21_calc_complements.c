@@ -1,10 +1,11 @@
-#include "s21_matrix.h"
 #include <math.h>
+
+#include "s21_matrix.h"
 
 // TODO Refactor
 /**
  * @brief Calculate matrix cofactor matrix.
- * 
+ *
  * @param A Source matrix.
  * @param result Output matrix.
  * @return Success of function.
@@ -13,7 +14,7 @@
  * @retval 2 - Wrong size.
  */
 int s21_calc_complements(matrix_t *A, matrix_t *result) {
-  if (is_null_mat(A) || !is_null_mat(result)) return 1;
+  if (is_incorrect_mat(A) || !is_incorrect_mat(result)) return 1;
   if (A->rows != A->columns) return 2;
   if (s21_create_matrix(A->rows, A->columns, result)) return 1;
   if (A->rows == 2) {
