@@ -1,7 +1,6 @@
 #ifndef S21_MATRIX_H_
 #define S21_MATRIX_H_
-// TODO Write documentation
-// TODO Add Unit_tests
+// TODO Refactor Unit_tests?
 #ifndef SUCCESS
 #define SUCCESS 1
 #endif
@@ -10,9 +9,9 @@
 #endif
 #include <stdio.h>
 typedef struct matrix_struct {
-    double** matrix;
-    int rows;
-    int columns;
+  double **matrix;
+  int rows;
+  int columns;
 } matrix_t;
 int s21_create_matrix(int rows, int columns, matrix_t *result);
 void s21_remove_matrix(matrix_t *A);
@@ -26,7 +25,7 @@ int s21_calc_complements(matrix_t *A, matrix_t *result);
 int s21_determinant(matrix_t *A, double *result);
 int s21_inverse_matrix(matrix_t *A, matrix_t *result);
 char *s21_matrix_to_str(matrix_t *A, int precision);
-int s21_copy_matrix(matrix_t* source, matrix_t* copy);
-double get_minor(matrix_t* src, int row, int col);
+int s21_copy_matrix(matrix_t *source, matrix_t *copy);
+double get_minor(matrix_t *src, int row, int col);
 #include "Utility.h"
 #endif  // S21_MATRIX_H_
