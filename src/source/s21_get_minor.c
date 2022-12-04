@@ -1,8 +1,9 @@
 #include "s21_matrix.h"
-void create_sub_matrix(matrix_t* src, int row, int col, int size, matrix_t* result);
+void create_sub_matrix(matrix_t* src, int row, int col, int size,
+                       matrix_t* result);
 // TODO Documentation
 double get_minor(matrix_t* src, int row, int col) {
-  if (is_null_mat(src)) return 0;
+  if (is_incorrect_mat(src)) return 0;
   int sub_size = src->rows - 1;
   double res = 0;
   matrix_t sub_matrix = {0};
@@ -18,7 +19,8 @@ double get_minor(matrix_t* src, int row, int col) {
   s21_remove_matrix(&sub_matrix);
   return res;
 }
-void create_sub_matrix(matrix_t* src, int row, int col, int size, matrix_t* result) {
+void create_sub_matrix(matrix_t* src, int row, int col, int size,
+                       matrix_t* result) {
   if (s21_create_matrix(size, size, result)) return;
   for (int r = 0, res_r = 0; r <= size; r++) {
     if (r == row) continue;
