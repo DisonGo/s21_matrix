@@ -63,10 +63,10 @@ no_warns:
 	$(eval gcc = gcc)
 
 clang:
-	clang-format --style=Google -n ./*.c ./*.h ${LIB_SRC_DIR}/*.c
+	clang-format --style=Google -n ${LIB_SRC_DIR}/*.c ${ADD_SRC_DIR}/*.c ${LIB_INC_DIR}/*.h ${ADD_INC_DIR}/*.h
 
 clang-replace:
-	clang-format --style=Google -i *.c *.h ${LIB_SRC_DIR}/*.c
+	clang-format --style=Google -i ${LIB_SRC_DIR}/*.c ${ADD_SRC_DIR}/*.c ${LIB_INC_DIR}/*.h ${ADD_INC_DIR}/*.h
 
 $(BUILD_DIR)/$(PROJECT_NAME).a: obj
 	ar rcs $(BUILD_DIR)/$@ $(LIB_O_DIR)/*.o $(ADD_O_DIR)/*.o
@@ -80,7 +80,7 @@ set_report_gcc:
 	@echo $(PROJECT_NAME):Check build
 
 test: $(TEST_SRC) $(BUILD_DIR)/$(PROJECT_NAME).a
-	$(gcc) $^ -o $@ $(TEST_CHECK_F) $(ADD_LIB)
+	$(gcc) -g -I${LIB_INC_DIR} -I${ADD_INC_DIR} $^ -o $@ $(TEST_CHECK_F) $(ADD_LIB)
 
 gcov_report: clean set_report_gcc test
 	./test
