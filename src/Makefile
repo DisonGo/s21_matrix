@@ -85,8 +85,8 @@ test: $(TEST_SRC) $(BUILD_DIR)/$(PROJECT_NAME).a
 gcov_report: clean set_report_gcc test
 	./test
 	gcov *.c ${LIB_SRC_DIR}/*.c -o $(ODIR)/*
-	mv *.gcov ./gcov
-	mv ./*.gc* $(ODIR)/*/*.gc* ./gcov
+	mv *.gc* ./gcov
+	mv $(ODIR)/*/*.gc* $(ODIR)/*/*/*.gc*  ./gcov
 	lcov -t ./gcov -o report.info -c -d ./gcov
 	genhtml -o report report.info
 	$(OPEN_CMD) ./report/index.html
