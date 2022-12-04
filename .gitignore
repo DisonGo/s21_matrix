@@ -3,6 +3,12 @@ create_funcs.sh
 test
 main
 .vscode
+*.gc*
+*.html
+*.css
+*.png
+*.info
+report
 materials
 # Prerequisites
 *.d
