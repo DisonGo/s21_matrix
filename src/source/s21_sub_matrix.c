@@ -18,7 +18,7 @@ int s21_sub_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
   if (s21_create_matrix(rows, cols, result)) return 1;
   for (int row = 0; row < rows; row++)
     for (int col = 0; col < cols; col++) {
-      long double sub = A->matrix[row][col] - B->matrix[row][col];
+      double sub = A->matrix[row][col] - B->matrix[row][col];
       if (isinf(fabs(sub)) || isnan(fabs(sub))) error = 2;
       if (!error) result->matrix[row][col] = sub;
     }

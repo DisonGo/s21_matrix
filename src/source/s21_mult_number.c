@@ -16,7 +16,7 @@ int s21_mult_number(matrix_t *A, double number, matrix_t *result) {
   if (s21_create_matrix(rows, cols, result)) return 1;
   for (int row = 0; row < rows; row++)
     for (int col = 0; col < cols; col++) {
-      long double mult = A->matrix[row][col] * number;
+      double mult = A->matrix[row][col] * number;
       if (isinf(fabs(mult)) || isnan(fabs(mult))) error = 2;
       if (!error) result->matrix[row][col] = mult;
     }

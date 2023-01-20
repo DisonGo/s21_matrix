@@ -9,7 +9,7 @@
 // long double max_ld(long double a, long double b) { return a > b ? a : b; }
 // long double min_ld(long double a, long double b) { return a < b ? a : b; }
 
-int is_eq_ld(long double a, long double b, long double precision) {
+int is_eq_d(double a, double b, long double precision) {
   // a = (long double)(float) a;
   // b = (long double)(float) b;
   long double diff = fabs(a - b);
