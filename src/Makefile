@@ -11,8 +11,7 @@ TESTS_DIR		= tests
 BUILD_DIR		= ../build
 UNAME_S 		:= $(shell uname -s)
 TEST_SRC		= $(TESTS_DIR)/${PROJECT_NAME}_test.c
-# -Werror -Wall -Wextra 
-Flags 			= -std=c11
+Flags 			= -std=c11 -Werror -Wall -Wextra
 gcc 			= gcc $(Flags)
 LIB_SOURCES		= $(shell find $(LIB_SRC_DIR) -name '*.c')
 ADD_SOURCES		= $(shell find $(ADD_SRC_DIR) -name '*.c')
@@ -41,10 +40,6 @@ $(LIB_O_DIR)/%.o: $(LIB_SRC_DIR)/%.c
 $(ADD_O_DIR)/%.o: $(ADD_SRC_DIR)/%.c
 	$(gcc) $(ADD_LIB) -I${LIB_INC_DIR} -I${ADD_INC_DIR} $< -c -o $@
 
-tests: clean
-	$(eval gcc = 1)
-	@echo $(ADD_OBJ)
-
 clear:
 	clear
 
@@ -55,6 +50,7 @@ clean:
 	rm -rf $(ODIR)/*/*/*.o $(ODIR)/*/*/*.gc*
 	rm -rf ./gcov/*.o ./gcov/*.gc*
 	rm -rf ./*.gc*
+	rm -rf ./*.dSYM
 	rm -rf report*
 
 obj: $(LIB_OBJ) $(ADD_OBJ)
@@ -69,7 +65,7 @@ clang-replace:
 	clang-format --style=Google -i ${LIB_SRC_DIR}/*.c ${ADD_SRC_DIR}/*.c ${LIB_INC_DIR}/*.h ${ADD_INC_DIR}/*.h
 
 $(BUILD_DIR)/$(PROJECT_NAME).a: obj
-	ar rcs $(BUILD_DIR)/$@ $(LIB_O_DIR)/*.o $(ADD_O_DIR)/*.o
+	ar rcs $@ $(LIB_O_DIR)/*.o $(ADD_O_DIR)/*.o
 $(PROJECT_NAME).a: $(BUILD_DIR)/$(PROJECT_NAME).a
 set_debug_gcc:
 	$(eval gcc += -g)
@@ -81,7 +77,7 @@ set_report_gcc:
 
 test: $(TEST_SRC) $(BUILD_DIR)/$(PROJECT_NAME).a
 	$(gcc) -g -I${LIB_INC_DIR} -I${ADD_INC_DIR} $^ -o $@ $(TEST_CHECK_F) $(ADD_LIB)
-
+	./test
 gcov_report: clean set_report_gcc test
 	./test
 	gcov *.c ${LIB_SRC_DIR}/*.c -o $(ODIR)/*
