@@ -18,7 +18,7 @@ int s21_sum_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
   if (s21_create_matrix(rows, cols, result)) return 1;
   for (int row = 0; row < rows; row++)
     for (int col = 0; col < cols; col++) {
-      long double sum = A->matrix[row][col] + B->matrix[row][col];
+      double sum = A->matrix[row][col] + B->matrix[row][col];
       if (isinf(fabs(sum)) || isnan(fabs(sum))) error = 2;
       if (!error) result->matrix[row][col] = sum;
     }

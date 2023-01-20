@@ -20,7 +20,7 @@ int s21_mult_matrix(matrix_t *A, matrix_t *B, matrix_t *result) {
   if (s21_create_matrix(rows, cols, result)) return 1;
   for (int row = 0; row < rows; row++)
     for (int col = 0; col < cols; col++) {
-      long double value = 0;
+      double value = 0;
       for (int k = 0; k < k_max; k++)
         value += A->matrix[row][k] * B->matrix[k][col];
       if (isinf(fabs(value)) || isnan(fabs(value))) error = 2;
