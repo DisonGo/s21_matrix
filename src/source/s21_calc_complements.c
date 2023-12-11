@@ -2,7 +2,6 @@
 
 #include "s21_matrix.h"
 
-// TODO Refactor
 /**
  * @brief Calculate matrix cofactor matrix.
  *
@@ -26,7 +25,7 @@ int s21_calc_complements(matrix_t *A, matrix_t *result) {
     int stop = 0;
     for (int i = 0; i < result->rows && !stop; i++) {
       for (int j = 0; j < result->columns && !stop; j++) {
-        double temp = get_minor(A, i, j);
+        double temp = s21_get_minor(A, i, j);
         if (!isinf(fabs(temp)) && !isnan(fabs(temp))) {
           result->matrix[i][j] = temp * pow(-1, i + j);
         }

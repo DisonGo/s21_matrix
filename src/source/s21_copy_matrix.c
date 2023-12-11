@@ -2,7 +2,7 @@
 
 #include "s21_matrix.h"
 /**
- * @brief Copy matrix to new empty matrix.
+ * @brief Copy matrix to new matrix.
  *
  * @param source Source matrix.
  * @param copy Output matrix.
