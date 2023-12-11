@@ -1,8 +1,16 @@
 #include "s21_matrix.h"
 void create_sub_matrix(matrix_t* src, int row, int col, int size,
                        matrix_t* result);
-// TODO Documentation
-double get_minor(matrix_t* src, int row, int col) {
+/**
+ * @brief Get minor value at selected position in matrix.
+ *
+ * @param src Source matrix.
+ * @param row Selected row.
+ * @param col Selected column.
+ * @return Minor value.
+ * @retval double
+ */
+double s21_get_minor(matrix_t* src, int row, int col) {
   if (is_incorrect_mat(src)) return 0;
   int sub_size = src->rows - 1;
   double res = 0;
@@ -14,7 +22,7 @@ double get_minor(matrix_t* src, int row, int col) {
     for (int column = 0; column < sub_size; column++) {
       int sign = (column % 2 == 0) ? 1 : -1;
       double value = sub_matrix.matrix[0][column];
-      res += sign * value * get_minor(&sub_matrix, 0, column);
+      res += sign * value * s21_get_minor(&sub_matrix, 0, column);
     }
   s21_remove_matrix(&sub_matrix);
   return res;

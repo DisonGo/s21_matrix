@@ -18,7 +18,7 @@ int s21_determinant(matrix_t *A, double *result) {
     for (int col = 0; col < size; col++) {
       long double cur_number = A->matrix[0][col];
       int sign = (col % 2 == 0) ? 1 : -1;
-      *result += cur_number ? sign * cur_number * get_minor(A, 0, col) : 0;
+      *result += cur_number ? sign * cur_number * s21_get_minor(A, 0, col) : 0;
     }
   }
   return 0;
